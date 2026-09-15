@@ -53,16 +53,16 @@ class AetherInputMethodService : InputMethodService() {
     }
 
     private fun setupToolbar() {
-        toolbar.setOnTranslateScreenClick {
+        toolbar.onTranslateScreenClick = {
             Toast.makeText(this, "Screen Translate (Accessibility) - coming next", Toast.LENGTH_SHORT).show()
             // startScreenTranslate()
         }
 
-        toolbar.setOnTranslateTextClick {
+        toolbar.onTranslateTextClick = {
             translateCurrentComposingText()
         }
 
-        toolbar.setOnSettingsClick {
+        toolbar.onSettingsClick = {
             val intent = android.content.Intent(this, com.aetherkey.ime.ui.settings.SettingsActivity::class.java)
             intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)

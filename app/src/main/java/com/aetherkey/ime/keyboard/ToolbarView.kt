@@ -39,16 +39,4 @@ class ToolbarView @JvmOverloads constructor(
         btnTextTranslate.setOnClickListener { onTranslateTextClick?.invoke() }
         btnSettings.setOnClickListener { onSettingsClick?.invoke() }
     }
-
-    fun setOnTranslateScreenClick(listener: () -> Unit) {
-        onTranslateScreenClick = listener
-    }
-
-    fun setOnTranslateTextClick(listener: () -> Unit) {
-        onTranslateTextClick = listener
-    }
-
-    fun setOnSettingsClick(listener: () -> Unit) {
-        onSettingsClick = listener
-    }
 }
