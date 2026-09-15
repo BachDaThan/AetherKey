@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -20,24 +21,36 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: gradle
 
+      # Cách ổn định hơn: dùng v4 + chỉ cài package cần thiết
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools platforms;android-35 build-tools;35.0.0
+          log-accepted-android-sdk-licenses: true
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew || true
+        run: |
+          if [ -f gradlew ]; then
+            chmod +x gradlew
+          else
+            echo "No gradlew found yet (skeleton). Skipping build."
+          fi
 
       - name: Build Debug APK
         run: |
           if [ -f gradlew ]; then
-            ./gradlew assembleDebug --stacktrace
+            ./gradlew assembleDebug --stacktrace --no-daemon
           else
-            echo "No gradlew yet - skeleton only. Add wrapper later."
+            echo "✅ Workflow OK - project is still skeleton (chưa có Gradle Wrapper)."
+            echo "Khi có gradlew + source đầy đủ thì sẽ build APK thật."
+            exit 0
           fi
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
-        if: success()
+        if: success() && hashFiles('app/build/outputs/apk/debug/*.apk') != ''
         with:
           name: AetherKey-debug
           path: app/build/outputs/apk/debug/*.apk
