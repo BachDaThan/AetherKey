@@ -3,14 +3,15 @@ name: Build AetherKey APK
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
+
+permissions:
+  contents: write   # cần để tạo Release
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -23,7 +24,6 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      # Cách ổn định hơn: dùng v4 + chỉ cài package cần thiết
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
         with:
@@ -31,27 +31,34 @@ jobs:
           log-accepted-android-sdk-licenses: true
 
       - name: Grant execute permission for gradlew
-        run: |
-          if [ -f gradlew ]; then
-            chmod +x gradlew
-          else
-            echo "No gradlew found yet (skeleton). Skipping build."
-          fi
+        run: chmod +x gradlew
 
       - name: Build Debug APK
-        run: |
-          if [ -f gradlew ]; then
-            ./gradlew assembleDebug --stacktrace --no-daemon
-          else
-            echo "✅ Workflow OK - project is still skeleton (chưa có Gradle Wrapper)."
-            echo "Khi có gradlew + source đầy đủ thì sẽ build APK thật."
-            exit 0
-          fi
+        run: ./gradlew assembleDebug --stacktrace --no-daemon
 
-      - name: Upload APK
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
-        if: success() && hashFiles('app/build/outputs/apk/debug/*.apk') != ''
+        if: success()
         with:
           name: AetherKey-debug
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 14
+
+      - name: Create GitHub Release
+        if: success() && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.1.1
+          name: AetherKey v0.1.1
+          body: |
+            ## AetherKey v0.1.1
+            - Skeleton IME + Toolbar
+            - BYOK AI Translate + Key Rotation
+            - PrivacyGuard + Room Dictionary
+            - Adaptive icon
+            - First successful automated APK build
+          files: app/build/outputs/apk/debug/*.apk
+          draft: false
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

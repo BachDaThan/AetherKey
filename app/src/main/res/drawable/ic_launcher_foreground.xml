@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple keyboard + AI spark icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M24,36h60v8H24zM24,48h40v8H24zM24,60h50v8H24zM24,72h30v8H24z"/>
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M78,30 L86,42 L98,36 L90,48 L102,54 L88,56 L86,70 L80,58 L66,64 L74,50 L62,42 L76,40 Z"/>
+</vector>
