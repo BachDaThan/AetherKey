@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AetherKey</string>
+    <string name="subtype_vi_telex">Tiếng Việt (Telex)</string>
+    <string name="subtype_en_qwerty">English (QWERTY)</string>
+    <string name="accessibility_service_description">AetherKey Screen Translate - Đọc văn bản trên màn hình để dịch (chỉ khi bạn bấm nút)</string>
+    <string name="toolbar_translate_screen">Dịch màn hình</string>
+    <string name="toolbar_translate_text">Dịch câu gõ</string>
+    <string name="toolbar_settings">Cài đặt</string>
+    <string name="settings_title">Cài đặt AetherKey</string>
+    <string name="api_keys_title">API Keys (BYOK)</string>
+    <string name="theme_title">Giao diện</string>
+    <string name="dictionary_title">Từ điển</string>
+</resources>

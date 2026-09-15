@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/aether_background_dark">
+
+    <!-- Toolbar trên cùng -->
+    <com.aetherkey.ime.keyboard.ToolbarView
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/aether_toolbar_bg"
+        android:paddingHorizontal="8dp"
+        android:gravity="center_vertical" />
+
+    <!-- Placeholder keyboard area - sẽ thay bằng full QWERTY + Telex sau -->
+    <FrameLayout
+        android:id="@+id/keyboard_container"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@color/aether_key_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="AetherKey Keyboard\n(QWERTY + Telex sắp hoàn thiện)"
+            android:textColor="@color/aether_text"
+            android:textSize="16sp"
+            android:gravity="center" />
+    </FrameLayout>
+
+</LinearLayout>

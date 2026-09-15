@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Vibrant neon-ish palette for AetherKey -->
+    <color name="aether_primary">#7C4DFF</color>          <!-- Deep purple -->
+    <color name="aether_on_primary">#FFFFFF</color>
+    <color name="aether_secondary">#00E5FF</color>        <!-- Cyan neon -->
+    <color name="aether_on_secondary">#000000</color>
+    <color name="aether_accent">#FF4081</color>           <!-- Pink accent -->
+    <color name="aether_background_dark">#0D0D0D</color>  <!-- AMOLED black -->
+    <color name="aether_background_light">#F5F5FF</color>
+    <color name="aether_key_bg">#1A1A2E</color>
+    <color name="aether_key_pressed">#7C4DFF</color>
+    <color name="aether_toolbar_bg">#121212</color>
+    <color name="aether_text">#E0E0E0</color>
+</resources>
