@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 import android.widget.Toast
+import com.aetherkey.ime.R
 import com.aetherkey.ime.ai.AiTranslateClient
 import com.aetherkey.ime.dictionary.LocalDictionaryDb
 import com.aetherkey.ime.keyboard.ToolbarView
